@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#123e31">
+<title>Christmas Gift 2026 · 圣诞礼物大抽选</title>
+
+<style>
+:root {
+  --green: #174b39;
+  --deep: #0d3027;
+  --red: #b93643;
+  --gold: #e6bf70;
+  --cream: #fff8ed;
+  --ink: #203e32;
+  --muted: #68796e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 14px 36px;
+  color: var(--cream);
+  font-family: system-ui, -apple-system, "Segoe UI",
+    "Microsoft YaHei", sans-serif;
+  background:
+    radial-gradient(circle at 12% 10%, #ffffff16 0 2px, transparent 3px),
+    radial-gradient(circle at 85% 28%, #ffffff16 0 2px, transparent 3px),
+    linear-gradient(145deg, var(--deep), #1b6548 60%, #0c3027);
+  background-size: 90px 90px, 130px 130px, auto;
+}
+
+main { width: min(700px, 100%); margin: auto; }
+
+.top { text-align: center; margin: 6px auto 24px; }
+
+.eyebrow {
+  color: var(--gold);
+  letter-spacing: 3px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.tree { font-size: 34px; margin: 10px 0 3px; }
+
+h1 {
+  font-family: Georgia, "Microsoft YaHei", serif;
+  font-size: clamp(31px, 7vw, 46px);
+  line-height: 1.16;
+  margin: 0;
+  text-shadow: 0 3px #86212c;
+}
+
+h1 span { color: #f1d69a; }
+
+.intro {
+  color: #e1ede3;
+  line-height: 1.8;
+  font-size: 14px;
+  margin: 14px auto 0;
+  max-width: 540px;
+}
+
+.card {
+  background: var(--cream);
+  color: var(--ink);
+  border: 2px solid var(--gold);
+  border-radius: 23px;
+  padding: clamp(18px, 4vw, 28px);
+  box-shadow: 0 18px 42px #001b1480;
+  margin-bottom: 15px;
+}
+
+h2 { font-size: 20px; margin: 0 0 8px; line-height: 1.6; }
+h2 span { font-size: 14px; font-weight: 600; color: var(--muted); }
+
+.muted {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.8;
+  margin: 0 0 18px;
+}
+
+label {
+  display: block;
+  font-weight: 700;
+  font-size: 13px;
+  margin: 15px 0 7px;
+  line-height: 1.7;
+}
+
+.field {
+  width: 100%;
+  border: 1px solid #d8d8c9;
+  border-radius: 12px;
+  background: #fffdf8;
+  padding: 13px 14px;
+  font: inherit;
+  font-size: 15px;
+  color: var(--ink);
+  outline: none;
+}
+
+.field:focus {
+  border-color: #277251;
+  box-shadow: 0 0 0 3px #2772511a;
+}
+
+textarea.field { resize: vertical; min-height: 76px; }
+
+.rank { display: flex; align-items: center; gap: 8px; }
+.rank .emoji { font-size: 20px; width: 30px; text-align: center; }
+
+button { font: inherit; cursor: pointer; }
+
+.primary {
+  border: 0;
+  border-radius: 999px;
+  background: var(--red);
+  color: white;
+  font-weight: 750;
+  padding: 13px 20px;
+  width: 100%;
+  margin-top: 19px;
+  box-shadow: 0 4px 0 #7d202b;
+  line-height: 1.6;
+}
+
+.primary:active { transform: translateY(2px); box-shadow: 0 2px 0 #7d202b; }
+
+.secondary {
+  border: 1px solid #c9b57e;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  padding: 10px 15px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.actions { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px; }
+.actions button { flex: 1; min-width: 120px; }
+
+.hidden { display: none !important; }
+
+.status {
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: #e9f2e9;
+  color: #28563f;
+  font-size: 13px;
+  line-height: 1.7;
+  margin-top: 14px;
+  overflow-wrap: anywhere;
+}
+
+.warn { background: #fff0dc; color: #765022; }
+
+.draw-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.gift {
+  min-width: 0;
+  min-height: 145px;
+  border: 0;
+  border-radius: 16px;
+  color: #fffaf0;
+  padding: 13px 6px;
+  background: linear-gradient(150deg, #c9414b, #982733);
+  box-shadow: 0 5px 0 #6f1b27;
+  position: relative;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+}
+
+.gift:nth-child(2) {
+  background: linear-gradient(150deg, #2b805a, #15513b);
+  box-shadow: 0 5px 0 #0b3426;
+}
+
+.gift:nth-child(3) {
+  background: linear-gradient(150deg, #d7ad5d, #ad7627);
+  box-shadow: 0 5px 0 #79521c;
+}
+
+.gift:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 12px;
+  transform: translateX(-50%);
+  background: #fff0c455;
+}
+
+.gift:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: #fff0c455;
+}
+
+.gift:hover { filter: brightness(1.07); transform: translateY(-2px); }
+.gift:disabled { opacity: .8; cursor: default; transform: none; }
+
+.gift .icon {
+  font-size: 37px;
+  display: block;
+  position: relative;
+  z-index: 1;
+  margin: 11px 0 9px;
+}
+
+.gift b {
+  font-size: 12px;
+  letter-spacing: .3px;
+  position: relative;
+  z-index: 1;
+  display: block;
+  line-height: 1.5;
+}
+
+.gift small {
+  font-size: 10px;
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: 6px;
+}
+
+.result {
+  background: #f4ecd9;
+  border: 1px dashed #c5a45d;
+  border-radius: 16px;
+  text-align: center;
+  padding: 20px 15px;
+  margin-top: 20px;
+  animation: appear .3s ease-out;
+}
+
+.result .tiny { font-size: 11px; letter-spacing: 1px; color: #68796e; line-height: 1.8; }
+.result h3 { font-size: 22px; line-height: 1.6; color: #a42b38; margin: 9px 0; }
+.result .wish {
+  font-size: 18px;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-weight: 700;
+}
+.result .explain { font-size: 13px; line-height: 1.8; color: #68796e; margin: 10px 0 0; }
+
+.foot {
+  text-align: center;
+  color: #d6e4d8;
+  font-size: 12px;
+  line-height: 1.9;
+  margin: 20px auto;
+  max-width: 560px;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: scale(.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 430px) {
+  body { padding: 18px 10px 28px; }
+  .draw-grid { gap: 7px; }
+  .gift { min-height: 135px; border-radius: 13px; }
+  .gift .icon { font-size: 31px; }
+  .gift b { font-size: 11px; }
+  .gift small { font-size: 9px; }
+  .card { border-radius: 19px; }
+}
+</style>
+</head>
+
+<body>
+<main>
+
+<header class="top">
+  <div class="eyebrow">✦ A Little Christmas Surprise ✦</div>
+  <div class="tree">🎄</div>
+
+  <h1>Christmas Gift<br><span>圣诞礼物大抽选</span></h1>
+
+  <p class="intro">
+    写下你最想收到的圣诞礼物，准备好你的三个愿望吧！🎁<br>
+    Write down your three Christmas gift wishes!<br><br>
+    生成专属抽选链接，分享给朋友、另一半、同事或家人。<br>
+    Generate your personal draw link and share it with friends,
+    your partner, colleagues, or family.<br><br>
+    抽中哪一个，就送哪一个！✨<br>
+    Whatever gets picked, that's the gift to prepare!
+  </p>
+</header>
+
+<section class="card" id="setup">
+ <h2>
+  🎁 第一步：写下你的愿望
+  <span> · Step 1: Write Your Wishes</span>
+</h2>
+
+  <p class="muted">
+    填写你的三个礼物愿望，生成专属抽选链接，再分享给送你礼物的人！<br>
+    List your three gift wishes, generate your personal draw link,
+    and share it with your gift-giver!
+  </p>
+
+  <label for="owner">你的名字 / 昵称 · Your Name / Nickname</label>
+  <input class="field" id="owner" maxlength="40"
+    placeholder="你的名字 / 昵称 · Your name / nickname"
+    autocomplete="off">
+
+  <label for="dream">
+    <span class="rank">
+      <span class="emoji">❤️</span>
+      最想得到的礼物 · Dream Gift
+    </span>
+  </label>
+  <textarea class="field" id="dream" maxlength="300"
+    placeholder="写下你最想要的礼物…… / Describe the gift you'd love most..."></textarea>
+
+  <label for="nice">
+    <span class="rank">
+      <span class="emoji">🎁</span>
+      收到会很开心的礼物 · Nice-to-Have Gift
+    </span>
+  </label>
+  <textarea class="field" id="nice" maxlength="300"
+    placeholder="喜欢，但不是第一选择…… / A gift you'd like, but isn't your first choice..."></textarea>
+
+  <label for="okay">
+    <span class="rank">
+      <span class="emoji">🎄</span>
+      可以接受的礼物 · Acceptable Gift
+    </span>
+  </label>
+  <textarea class="field" id="okay" maxlength="300"
+    placeholder="不是最期待的，但也会接受…… / Not your first choice, but still acceptable..."></textarea>
+
+  <button class="primary" id="makeLink">
+    🎁 生成我的抽选链接 · Generate My Draw Link
+  </button>
+
+  <div class="status warn hidden" id="linkNotice" role="status"></div>
+
+  <div class="hidden" id="linkArea">
+    <label for="shareLink">
+      分享你的专属抽选链接 · Share Your Gift Draw Link
+    </label>
+    <textarea class="field" id="shareLink" rows="3" readonly></textarea>
+
+    <div class="actions">
+      <button class="secondary" id="copyLink">复制链接 · Copy Link</button>
+      <button class="secondary" id="shareNative">分享链接 · Share Link</button>
+    </div>
+
+    <p class="muted" style="margin:13px 0 0">
+      对方打开链接后，只会看到三个礼物盒。抽选后，页面只显示抽中的愿望。<br>
+      The recipient will see three gift boxes. Only the selected gift wish will be revealed.
+      <br><br>
+      温馨提示：愿望内容会编码在链接中，并非加密，请只分享给信任的人。<br>
+      Note: Your wishes are encoded in the link, not encrypted. Share it only with people you trust.
+    </p>
+  </div>
+</section>
+
+<section class="card hidden" id="draw">
+  <h2 id="drawHeading">🎁 轮到你抽选了！ · Your Turn to Pick!</h2>
+
+  <p class="muted" id="drawIntro">
+    从三个礼物盒中选一个，抽中后只揭晓该愿望。<br>
+    Pick one of the three gift boxes to reveal a gift wish.
+  </p>
+
+  <div class="draw-grid" id="giftGrid">
+    <button class="gift" data-i="0">
+      <span class="icon">🎁</span>
+      <b>神秘礼物 01 · Mystery Gift 01</b>
+      <small>选我 · CHOOSE ME</small>
+    </button>
+    <button class="gift" data-i="1">
+      <span class="icon">🎁</span>
+      <b>神秘礼物 02 · Mystery Gift 02</b>
+      <small>选我 · CHOOSE ME</small>
+    </button>
+    <button class="gift" data-i="2">
+      <span class="icon">🎁</span>
+      <b>神秘礼物 03 · Mystery Gift 03</b>
+      <small>选我 · CHOOSE ME</small>
+    </button>
+  </div>
+
+  <div class="result hidden" id="result" aria-live="polite">
+    <div class="tiny">✨ 圣诞抽选结果 · YOUR CHRISTMAS DRAW ✨</div>
+    <h3 id="resultTitle">抽选结果 · Draw Result</h3>
+    <div class="wish" id="resultWish"></div>
+    <p class="explain" id="resultExplain"></p>
+  </div>
+
+  <div class="actions hidden" id="drawActions">
+    <button class="secondary" id="copyResult">
+      复制抽选结果 · Copy Result
+    </button>
+  </div>
+
+  <div class="status warn hidden" id="drawNotice" role="status"></div>
+</section>
+
+<section class="card hidden" id="invalid">
+  <h2>🎄 链接无法打开 · Unable to Open This Link</h2>
+  <p class="muted">
+    链接可能不完整，请重新生成并分享完整链接。<br>
+    The link may be incomplete. Please generate and share the complete link again.
+  </p>
+</section>
+
+<p class="foot">
+  Made with love · Christmas 2026 🎄<br>
+  小提示：每个人都可以生成自己的专属链接，再分享给送礼物的人。愿望写得越具体，对方就越容易准备！❤️<br>
+  Tip: Everyone can generate their own link and share it with their gift-giver.
+  The more specific your wishes, the easier it is to prepare the perfect gift!
+</p>
+
+</main>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+
+  const categories = [
+    {
+      key: "dream",
+      title: "❤️ 最想得到的礼物！ · Dream Gift!",
+      desc: "恭喜抽中对方最期待的礼物！请用心准备这份惊喜。 / Congratulations! You picked the gift they want most. Make it a special surprise!"
+    },
+    {
+      key: "nice",
+      title: "🎁 收到会很开心的礼物 · Nice-to-Have Gift",
+      desc: "这是对方喜欢的选择！用心准备，相信对方会很开心。 / This is a gift they'd be happy to receive! Put some thought into it and make their day."
+    },
+    {
+      key: "okay",
+      title: "🎄 可以接受的礼物 · Acceptable Gift",
+      desc: "这是对方也能接受的选择！记得按照对方写下的愿望准备礼物。 / This is a gift they're happy to accept! Remember to follow their wishes."
+    }
+  ];
+
+  let data = null;
+  let drawn = false;
+  let giftOrder = [];
+
+  // Encode the wish data for sharing in the URL.
+  // This is encoding, not encryption.
+  function enc(obj) {
+    const bytes = new TextEncoder().encode(JSON.stringify(obj));
+    let binary = "";
+    bytes.forEach(b => binary += String.fromCharCode(b));
+    return btoa(binary)
+      .replace(/\+/g, "-")
+      .replace(/\//g, "_")
+      .replace(/=+$/g, "");
+  }
+
+  function dec(token) {
+    token = token.replace(/-/g, "+").replace(/_/g, "/");
+    while (token.length % 4) token += "=";
+
+    const binary = atob(token);
+    const bytes = Uint8Array.from(binary, c => c.charCodeAt(0));
+    return JSON.parse(new TextDecoder().decode(bytes));
+  }
+
+  function setNotice(el, message) {
+    el.textContent = message;
+    el.classList.remove("hidden");
+  }
+
+  // Fisher-Yates shuffle: randomize the category-to-box mapping.
+  function shuffleGifts(items) {
+    const shuffled = [...items];
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    return shuffled;
+  }
+
+  function showDraw(payload) {
+    data = payload;
+    drawn = false;
+
+    // Shuffle once when this draw page opens.
+    // Each box then keeps its assigned category until the draw is complete.
+    giftOrder = shuffleGifts(categories);
+
+    $("setup").classList.add("hidden");
+    $("draw").classList.remove("hidden");
+
+    $("drawHeading").textContent =
+      `${payload.owner} 的圣诞愿望盲抽 · ${payload.owner}'s Christmas Gift Draw`;
+
+    $("drawIntro").textContent =
+      "对方准备了三个愿望。选一个礼物盒，抽中后只揭晓这一项。 / Three gift wishes are waiting! Pick one box to reveal one wish.";
+
+    $("result").classList.add("hidden");
+    $("drawActions").classList.add("hidden");
+
+    document.querySelectorAll(".gift").forEach((button, i) => {
+      button.disabled = false;
+      button.style.outline = "";
+      button.style.outlineOffset = "";
+      button.innerHTML =
+        `<span class="icon">🎁</span>
+         <b>神秘礼物 0${i + 1} · Mystery Gift 0${i + 1}</b>
+         <small>选我 · CHOOSE ME</small>`;
+    });
+  }
+
+  function finishDraw(index) {
+    if (drawn || !data) return;
+
+    drawn = true;
+
+    const category = giftOrder[index];
+    const wish = data[category.key];
+
+    document.querySelectorAll(".gift").forEach((button, i) => {
+      button.disabled = true;
+
+      if (i === index) {
+        button.innerHTML =
+          '<span class="icon">🎉</span>' +
+          '<b>你抽中了！ · YOU GOT IT!</b>' +
+          '<small>已开启 · OPENED</small>';
+
+        button.style.outline = "3px solid #e6bf70";
+        button.style.outlineOffset = "3px";
+      } else {
+        button.innerHTML =
+          '<span class="icon">🎁</span>' +
+          '<b>已封存 · SEALED</b>' +
+          '<small>未开启 · NOT OPENED</small>';
+      }
+    });
+
+    $("resultTitle").textContent = category.title;
+    $("resultWish").textContent = wish;
+    $("resultExplain").textContent = category.desc;
+    $("result").classList.remove("hidden");
+    $("drawActions").classList.remove("hidden");
+
+    $("drawIntro").textContent =
+      "抽选完成！其他两个愿望不会在页面上显示。 / Draw complete! The other two wishes will remain hidden.";
+
+    $("copyResult").onclick = async () => {
+      const text =
+        `${data.owner} 的圣诞抽选结果 · Christmas Gift Draw Result\n` +
+        `${category.title}\n${wish}\n\n` +
+        `Christmas Gift 2026 · 圣诞礼物大抽选`;
+
+      try {
+        await navigator.clipboard.writeText(text);
+        $("copyResult").textContent = "已复制！ · Copied!";
+      } catch {
+        window.prompt("请复制抽选结果 / Copy your draw result:", text);
+      }
+    };
+  }
+
+  // If the URL contains a wish token, open the draw page.
+  const token = new URLSearchParams(location.search).get("wish");
+
+  if (token) {
+    try {
+      const payload = dec(token);
+
+      if (
+        !payload ||
+        typeof payload.owner !== "string" || !payload.owner.trim() ||
+        typeof payload.dream !== "string" || !payload.dream.trim() ||
+        typeof payload.nice !== "string" || !payload.nice.trim() ||
+        typeof payload.okay !== "string" || !payload.okay.trim()
+      ) {
+        throw new Error("Invalid wish data");
+      }
+
+      showDraw(payload);
+    } catch (e) {
+      $("setup").classList.add("hidden");
+      $("invalid").classList.remove("hidden");
+    }
+  }
+
+  // Generate the personal draw link.
+  $("makeLink").addEventListener("click", () => {
+    const owner = $("owner").value.trim();
+    const dream = $("dream").value.trim();
+    const nice = $("nice").value.trim();
+    const okay = $("okay").value.trim();
+
+    if (!owner || !dream || !nice || !okay) {
+      setNotice(
+        $("linkNotice"),
+        "请填写名字 / 昵称和全部三个礼物愿望，再生成链接。 / Please enter your name / nickname and all three gift wishes before generating the link."
+      );
+      return;
+    }
+
+    if (location.protocol !== "https:" && location.protocol !== "http:") {
+      setNotice(
+        $("linkNotice"),
+        "你现在打开的是本地 HTML 文件，链接无法正常分享。请先将网页部署到 HTTPS 网站，例如 Netlify。 / You are opening a local HTML file. Please host the page on an HTTPS website, such as Netlify, before sharing."
+      );
+      return;
+    }
+
+    const payload = { v: 1, owner, dream, nice, okay };
+    const base = location.href.split("#")[0].split("?")[0];
+
+    $("linkNotice").classList.add("hidden");
+    $("shareLink").value = base + "?wish=" + enc(payload);
+    $("linkArea").classList.remove("hidden");
+  });
+
+  // Copy the generated link.
+  $("copyLink").addEventListener("click", async () => {
+    const link = $("shareLink").value;
+
+    try {
+      await navigator.clipboard.writeText(link);
+      $("copyLink").textContent = "已复制！ · Copied!";
+    } catch {
+      $("shareLink").focus();
+      $("shareLink").select();
+
+      const copied = document.execCommand("copy");
+      $("copyLink").textContent = copied
+        ? "已复制！ · Copied!"
+        : "请手动复制 · Copy Manually";
+    }
+  });
+
+  // Share the link using the device's share menu when available.
+  $("shareNative").addEventListener("click", async () => {
+    const url = $("shareLink").value;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: "Christmas Gift 2026 · 圣诞礼物大抽选",
+          text: "来抽我的圣诞礼物愿望吧！ / Pick a Christmas gift wish for me!",
+          url
+        });
+      } catch (e) {
+        // The user may cancel the share menu.
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(url);
+        $("shareNative").textContent = "链接已复制 · Link Copied!";
+      } catch {
+        $("shareLink").focus();
+        $("shareLink").select();
+      }
+    }
+  });
+
+  // Each box uses its current randomized category mapping.
+  document.querySelectorAll(".gift").forEach(button => {
+    button.addEventListener("click", () => {
+      finishDraw(Number(button.dataset.i));
+    });
+  });
+})();
+</script>
+</body>
+</html>
