@@ -512,10 +512,10 @@ button { font: inherit; cursor: pointer; }
     $("draw").classList.remove("hidden");
 
     $("drawHeading").textContent =
-      `${payload.owner} 的圣诞愿望盲抽 · ${payload.owner}'s Christmas Gift Draw`;
+      `${payload.owner} 的圣诞礼物盲抽 · ${payload.owner}'s Christmas Gift Draw`;
 
     $("drawIntro").textContent =
-      "对方准备了三个愿望。选一个礼物盒，抽中后只揭晓这一项。 / Three gift wishes are waiting! Pick one box to reveal one wish.";
+      "对方准备了三个愿望礼物。选一个礼物盒，抽中后只揭晓这一项。 / Three gift wishes are waiting! Pick one box to reveal one wish.";
 
     $("result").classList.add("hidden");
     $("drawActions").classList.add("hidden");
@@ -565,7 +565,7 @@ button { font: inherit; cursor: pointer; }
     $("drawActions").classList.remove("hidden");
 
     $("drawIntro").textContent =
-      "抽选完成！其他两个愿望不会在页面上显示。 / Draw complete! The other two wishes will remain hidden.";
+      "抽选完成！其他两个礼物不会在页面上显示。 / Draw complete! The other two wishes will remain hidden.";
 
     $("copyResult").onclick = async () => {
       const text =
@@ -663,7 +663,7 @@ button { font: inherit; cursor: pointer; }
       try {
         await navigator.share({
           title: "Christmas Gift 2026 · 圣诞礼物大抽选",
-          text: "来抽我的圣诞礼物愿望吧！ / Pick a Christmas gift wish for me!",
+          text: "来抽我的圣诞礼物吧！ / Pick a Christmas gift wish for me!",
           url
         });
       } catch (e) {
